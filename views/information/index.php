@@ -6,6 +6,9 @@ $cs->registerScriptFile($assetsUrl . '/js/bootstrap-transition.min.js');
 $cs->registerScriptFile($assetsUrl . '/js/bootstrap-modal.min.js');
 
 $tablesQuery = $db->createCommand('SHOW TABLE STATUS')->queryAll();
+
+$caseConst = array('PDO::CASE_NATURAL', 'PDO::CASE_UPPER', 'PDO::CASE_LOWER',);
+$nullConst = array('PDO::NULL_NATURAL', 'PDO::NULL_EMPTY_STRING', 'PDO::NULL_TO_STRING',);
 ?>
 <table class="table table-bordered table-condensed table-striped">
     <caption><div class="alert alert-info"><strong><?php echo Yii::t('AdmindbModule.core', "Informations about the database connection"); ?></strong></div></caption>
@@ -26,15 +29,15 @@ $tablesQuery = $db->createCommand('SHOW TABLE STATUS')->queryAll();
                 <td><?php echo $db->driverName; ?></td>
             </tr>
             <tr>
-                <td><?php echo Yii::t('AdmindbModule.core', 'DB driver Version'); ?></td>
+                <td><?php echo Yii::t('AdmindbModule.core', 'DB driver version'); ?></td>
                 <td><?php echo $db->clientVersion; ?></td>
             </tr>
             <tr>
-                <td><?php echo Yii::t('AdmindbModule.core', 'Charset for MySQL and PostgreSQL'); ?></td>
+                <td><?php echo Yii::t('AdmindbModule.core', 'Charset'); ?></td>
                 <td><?php echo $db->charset; ?></td>
             </tr>
             <tr>
-                <td><?php echo Yii::t('AdmindbModule.core', 'Data Source Name (DSN)'); ?></td>
+                <td><?php echo Yii::t('AdmindbModule.core', 'PDO Data Source Name (DSN)'); ?></td>
                 <td><?php echo $db->connectionString; ?></td>
             </tr>
             <tr>
@@ -42,15 +45,17 @@ $tablesQuery = $db->createCommand('SHOW TABLE STATUS')->queryAll();
                 <td><?php echo $db->username; ?></td>
             </tr>
             <tr>
-                <td><?php echo Yii::t('AdmindbModule.core', 'The case of the column names'); ?></td>
-                <td><?php var_dump($db->columnCase); ?></td>
+                <td><?php echo Yii::t('AdmindbModule.core', 'How the column names case are converted'); ?></td>
+                <td>
+                <?php echo $caseConst[$db->columnCase]; ?>
+                </td>
             </tr>
             <tr>
                 <td><?php echo Yii::t('AdmindbModule.core', 'How the null and empty strings are converted'); ?></td>
-                <td><?php var_dump($db->nullConversion); ?></td>
+                <td><?php echo $nullConst[$db->nullConversion]; ?></td>
             </tr>
             <tr>
-                <td><?php echo Yii::t('AdmindbModule.core', 'DBMS server version.'); ?></td>
+                <td><?php echo Yii::t('AdmindbModule.core', 'DBMS server version'); ?></td>
                 <td><?php echo $db->serverVersion; ?></td>
             </tr>
             <tr>
@@ -135,7 +140,7 @@ $tablesQuery = $db->createCommand('SHOW TABLE STATUS')->queryAll();
                     </thead>
                     <tbody>
                         <?php foreach ($table->columns as $column): ?>
-                            <tr>
+                            <tr class="<?php echo ($column->isPrimaryKey ? 'warning' : ($column->isForeignKey ? 'error' : ''));?>">
                                 <td><?php echo $column->rawName; ?></td>
                                 <td><?php echo $column->dbType; ?></td>
                                 <td><?php echo $column->defaultValue; ?></td>

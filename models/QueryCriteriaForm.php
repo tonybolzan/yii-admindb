@@ -22,7 +22,7 @@ class QuerySqlForm extends CFormModel {
 
     function attributeLabels() {
         return array(
-            'class' => Yii::t('AdmindbModule.core', 'Class name of database table'),
+            'class' => Yii::t('AdmindbModule.core', 'Model name for the database table'),
             'methods' => Yii::t('AdmindbModule.core', 'CDbCriteria Methods'),
             'attributes' => Yii::t('AdmindbModule.core', 'CDbCriteria Attributes'),
         );

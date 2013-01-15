@@ -44,7 +44,7 @@ $cs->registerCoreScript('jquery');
                 <hr>
                 <p class="muted credit">
                     <?php echo Yii::powered(); ?>
-                    <a class="pull-right" href="https://github.com/tonybolzan/Yii-AdminDB"><i class="label">https://github.com/tonybolzan/Yii-AdminDB</i></a>
+                    <a class="pull-right" href="https://github.com/tonybolzan/Yii-AdminDB" target="_blank"><i class="label">https://github.com/tonybolzan/Yii-AdminDB</i></a>
                 </p>
             </div>
         </footer>

@@ -17,7 +17,7 @@ CSS
 ?>
 
 <table class="table table-bordered table-condensed table-striped">
-    <caption><div class="alert alert-info"><strong><?php echo Yii::t('AdmindbModule.core', "Server Limits"); ?></strong></div></caption>
+    <caption><div class="alert alert-info"><strong><?php echo Yii::t('AdmindbModule.core', "Informations about server"); ?></strong></div></caption>
     <thead>
         <tr>
             <th><?php echo Yii::t('AdmindbModule.core', 'Configuration'); ?></th>

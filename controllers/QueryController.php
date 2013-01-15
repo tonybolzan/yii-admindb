@@ -38,7 +38,7 @@ class QueryController extends AController {
                         ));
                     } else {
                         $affected = $this->module->dbhelper->db->createCommand($model->sql)->execute();
-                        Yii::app()->user->setFlash('success', Yii::t('AdmindbModule.core', 'Number of rows affected by the execution: ' . $affected));
+                        Yii::app()->user->setFlash('success', Yii::t('AdmindbModule.core', 'Number of rows affected by the execution: {row}', array('{row}' => $affected)));
                     }
 
                     $transaction->commit();

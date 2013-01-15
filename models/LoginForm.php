@@ -7,7 +7,7 @@ class LoginForm extends CFormModel {
 
     public function rules() {
         return array(
-            array('password', 'required'),
+            array('password', 'required', 'message' => Yii::t('AdmindbModule.core', 'Password cannot be blank')),
             array('password', 'authenticate'),
         );
     }
@@ -20,7 +20,7 @@ class LoginForm extends CFormModel {
         $this->_identity = new UserIdentity('yiier', $this->password);
 
         if (!$this->_identity->authenticate()) {
-            $this->addError('password', Yii::t('AdmindbModule.core', 'Incorrect password.'));
+            $this->addError('password', Yii::t('AdmindbModule.core', 'Incorrect password'));
         }
     }
 
